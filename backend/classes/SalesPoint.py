@@ -80,3 +80,13 @@ class SalesPoint:
         '''Открытие точки продаж.'''
 
         self.__is_open = True
+
+    def get_all_products(self):
+        """Возвращает список всех товаров в пункте продаж."""
+        
+        result = []
+        
+        for cell in self.__cells:
+            result.extend(cell.get_products())
+        
+        return result
