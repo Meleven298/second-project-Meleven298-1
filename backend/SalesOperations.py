@@ -28,7 +28,7 @@ class SalesOperations:
         result: Optional[Order] = None
 
         if not sales_point.is_open():
-            print("❌ Пункт продаж закрыт!")
+            print("Пункт продаж закрыт!")
         else:
             found = False
             
@@ -40,13 +40,13 @@ class SalesOperations:
                         company.net_worth += product.get_cost()
                         customer.add_purchase(product.get_name(), product.get_cost())
 
-                        print(f"✅ Продан товар {product.get_name()} за {product.get_cost()} руб.")
+                        print(f"Продан товар {product.get_name()} за {product.get_cost()} руб.")
 
                         result = Order(datetime.now().timestamp(), customer, [product])
                         found = True
             
             if found is False:
-                print("❌ Товар не найден в пункте продаж")
+                print("Товар не найден в пункте продаж")
 
         return result
     
@@ -75,12 +75,12 @@ class SalesOperations:
                     company.net_worth -= product.get_cost()
                     sales_point.add_revenue(-product.get_cost())
 
-                    print(f"✅ Возврат товара {product.get_name()}")
+                    print(f"Возврат товара {product.get_name()}")
 
                     result = True
                 except IndexError:
-                    print(f"❌ Нет места на складе, товар {product.get_name()} утилизирован")
-                    
+                    print(f"Нет места на складе, товар {product.get_name()} утилизирован")
+
                     company.net_worth -= product.get_cost()
                     result = True
             
