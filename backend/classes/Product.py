@@ -10,7 +10,7 @@ class Product:
             cost: Цена продукта.
             volume: Объем продукта.
         '''
-        
+
         self.__id = id
         self.__name = name
         self.__cost = cost
@@ -78,4 +78,6 @@ class Product:
         '''
 
         return f"{self.__name} (ID:{self.__id}) - {self.__cost} руб."
+    
+    
     
