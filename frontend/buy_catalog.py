@@ -14,7 +14,7 @@ def show_catalog(catalog: List[Dict]) -> None:
     """Показывает каталог."""
 
     print("\n" + "="*80)
-    print("🛒 КАТАЛОГ ТОВАРОВ")
+    print(" КАТАЛОГ ТОВАРОВ")
     print("="*80)
     
     categories = {}
@@ -28,7 +28,7 @@ def show_catalog(catalog: List[Dict]) -> None:
         categories[cat].append(product)
     
     for category, products in categories.items():
-        print(f"\n📁 {category.upper()}:")
+        print(f"\n{category.upper()}:")
         print("-"*60)
 
         for product in products:
@@ -41,7 +41,7 @@ def run_purchase_ui(company: Company, storage: Storage) -> None:
     catalog = load_catalog("products.json")
     
     if not catalog:
-        print("❌ Каталог не загружен! Запустите product_generator.py")
+        print("Каталог не загружен! Запустите product_generator.py")
     else:
         cart = []
         menu_active = True
@@ -76,18 +76,18 @@ def run_purchase_ui(company: Company, storage: Storage) -> None:
                         
                         if quantity > 0:
                             cart.append((product_data, quantity))
-                            print(f"✅ Добавлено: {product_data['название']} x{quantity}")
+                            print(f"Добавлено: {product_data['название']} x{quantity}")
                         else:
-                            print("❌ Количество должно быть > 0")
+                            print("Количество должно быть > 0")
                     else:
-                        print("❌ Товар не найден")
+                        print("Товар не найден")
                     
                 except ValueError:
-                    print("❌ Введите число")
+                    print("Введите число")
             
             elif choice == "3":
                 if len(cart) > 0:
-                    print(f"\n💰 Баланс компании: {company.net_worth:.2f} руб.")
+                    print(f"\nБаланс компании: {company.net_worth:.2f} руб.")
                     print("Товары в корзине:")
                     
                     for product_data, quantity in cart:
@@ -99,20 +99,20 @@ def run_purchase_ui(company: Company, storage: Storage) -> None:
                         success, total_cost, message = buy_products(storage, company, cart)
                         
                         if success:
-                            print(f"✅ {message}")
-                            print(f"💰 Списано: {total_cost:.2f} руб.")
-                            print(f"💰 Новый баланс: {company.net_worth:.2f} руб.")
+                            print(f"{message}")
+                            print(f"Списано: {total_cost:.2f} руб.")
+                            print(f"Новый баланс: {company.net_worth:.2f} руб.")
                             cart.clear()
                         else:
-                            print(f"❌ {message}")
+                            print(f"{message}")
                     else:
-                        print("❌ Закупка отменена")
+                        print("Закупка отменена")
                 else:
-                    print("❌ Корзина пуста")
+                    print("Корзина пуста")
             
             elif choice == "4":
                 if len(cart) > 0:
-                    print("\n🛒 КОРЗИНА:")
+                    print("\nКОРЗИНА:")
                     
                     total = 0
                     
@@ -123,14 +123,14 @@ def run_purchase_ui(company: Company, storage: Storage) -> None:
                     
                     print(f"  ИТОГО: {total:.2f} руб.")
                 else:
-                    print("🛒 Корзина пуста")
+                    print("Корзина пуста")
             
             elif choice == "5":
-                print(f"\n💰 Баланс компании: {company.net_worth:.2f} руб.")
+                print(f"\nБаланс компании: {company.net_worth:.2f} руб.")
             
             elif choice == "6":
-                print("👋 Возврат в главное меню")
+                print("Возврат в главное меню")
                 menu_active = False
             
             else:
-                print("❌ Неверный выбор")
+                print("Неверный выбор")
