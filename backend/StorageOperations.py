@@ -18,7 +18,7 @@ class StorageOperations:
         new_storage = Storage(new_id)
         storages.append(new_storage)
 
-        print(f"✅ Склад {new_storage.get_id()} успешно открыт!")
+        print(f"Склад {new_storage.get_id()} успешно открыт!")
 
         return new_storage
     
@@ -37,7 +37,7 @@ class StorageOperations:
         if storage in storages:
             storages.remove(storage)
 
-            print(f"❌ Склад {storage.get_id()} закрыт")
+            print(f"Склад {storage.get_id()} закрыт")
 
             return True
         
@@ -59,7 +59,7 @@ class StorageOperations:
         new_point = SalesPoint(new_id, address)
         sales_points.append(new_point)
 
-        print(f"✅ Пункт продаж {new_point.get_id()} по адресу {address} открыт!")
+        print(f"Пункт продаж {new_point.get_id()} по адресу {address} открыт!")
 
         return new_point
     
@@ -78,9 +78,8 @@ class StorageOperations:
         if sales_point in sales_points:
             sales_points.remove(sales_point)
 
-            print(f"❌ Пункт продаж {sales_point.get_id()} закрыт")
+            print(f"Пункт продаж {sales_point.get_id()} закрыт")
 
             return True
         
         print("Пункт продаж не найден")
-    
