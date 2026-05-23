@@ -18,6 +18,7 @@ class StaffOperations:
         for i, emplo in enumerate(employee_list):
             if employee.id == emplo.id:
                 fired_employee = employee_list.pop(i)
+                
         return fired_employee
 
     def hire_employee(self, employee: Employee, employee_list: list[Employee]) -> None:
