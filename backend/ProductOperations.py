@@ -90,12 +90,12 @@ class ProductOperations:
                     if result is False:
                         cell.add_product(product)
 
-                        print("❌ Нет места в пункте продаж")
+                        print("Нет места в пункте продаж")
 
                         result = False
                 
         if result is False:
-            print("❌ Товар не найден на складе")
+            print("Товар не найден на складе")
 
         return result
 
@@ -184,7 +184,7 @@ def buy_products(storage: Storage, company: Company, cart_items: list[tuple[dict
         message += f", {failed_products} утилизировано (не было места)"
 
     products = storage.get_all_products()
-    
+
     for product in products:
         print(product)
     
