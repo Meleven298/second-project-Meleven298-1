@@ -55,7 +55,7 @@ class CRM:
             sp._SalesPoint__revenue = sp_data.get("revenue", 0)
             self.sales_points.append(sp)
         
-        print(f"✅ Загружено. Баланс: {self.company.net_worth:.2f} руб.")
+        print(f"Загружено. Баланс: {self.company.net_worth:.2f} руб.")
     
     def save_data(self) -> None:
         '''Сохраняет все данные.'''
@@ -77,7 +77,7 @@ class CRM:
         
         DataStorage.save("crm_data.json", data)
 
-        print("💾 Данные сохранены")
+        print("Данные сохранены")
 
     def display_menu(self) -> None:
         """Отображение главного меню."""
@@ -86,25 +86,25 @@ class CRM:
         print(" ГЛАВНОЕ МЕНЮ CRM СИСТЕМЫ".center(70))
         print("=" * 70)
         
-        print("\n📦 ОПЕРАЦИИ С ТОВАРАМИ:")
+        print("\n ОПЕРАЦИИ С ТОВАРАМИ:")
         print("   1.  Перемещение товаров (склад->склад)")
         print("   2.  Перемещение товаров (склад->пункт продаж)")
         print("   3.  Продажа товара")
         print("   4.  Возврат товара")
         print("   5.  Закупка товара")
         
-        print("\n👥 УПРАВЛЕНИЕ ПЕРСОНАЛОМ:")
+        print("\n УПРАВЛЕНИЕ ПЕРСОНАЛОМ:")
         print("   6.  Найм сотрудника")
         print("   7.  Увольнение сотрудника")
         print("   8.  Смена ответственного лица")
         
-        print("\n🏢 УПРАВЛЕНИЕ ОБЪЕКТАМИ:")
+        print("\n УПРАВЛЕНИЕ ОБЪЕКТАМИ:")
         print("   9.  Открытие склада")
         print("   10. Закрытие склада")
         print("   11. Открытие пункта продаж")
         print("   12. Закрытие пункта продаж")
         
-        print("\n📊 ИНФОРМАЦИЯ И ОТЧЕТЫ:")
+        print("\n ИНФОРМАЦИЯ И ОТЧЕТЫ:")
         print("   13. Информация о складе")
         print("   14. Информация о пункте продаж")
         print("   15. Товары на складе")
@@ -224,15 +224,15 @@ class CRM:
         result = None
 
         if not self.storages:
-            print("❌ Нет складов")
+            print("Нет складов")
         elif not self.sales_points:
-            print("❌ Нет пунктов продаж")
+            print("Нет пунктов продаж")
         else:
             storage = self.storages[0]
             products = storage.get_all_products()
             
             if not products:
-                print("📭 На складе нет товаров. Сначала купите товары (пункт 5)")
+                print("На складе нет товаров. Сначала купите товары (пункт 5)")
             else:
                 print("Товары на складе:")
 
@@ -263,19 +263,19 @@ class CRM:
                                         
                                         for sp_cell in sales_point.get_cells():
                                             if sp_cell.add_product(product) and transfer_done is False:
-                                                print(f"✅ Товар перемещен в {sales_point.get_id()}")
+                                                print(f"Товар перемещен в {sales_point.get_id()}")
                                                 transfer_done = True
                                         
                                         if transfer_done is False:
                                             cell.add_product(product)
-                                            print("❌ Нет места в пункте продаж")
+                                            print("Нет места в пункте продаж")
                                             transfer_done = True
                         else:
-                            print("❌ Неверный номер пункта")
+                            print("Неверный номер пункта")
                     else:
-                        print("❌ Неверный номер товара")
+                        print("Неверный номер товара")
                 except:
-                    print("❌ Ошибка")
+                    print("Ошибка")
         
         return result
 
@@ -286,7 +286,7 @@ class CRM:
         
         try:
             if not self.sales_points:
-                print("❌ Нет пунктов продаж")
+                print("Нет пунктов продаж")
             else:
                 print("Пункты продаж:")
                 for i, sp in enumerate(self.sales_points):
@@ -299,7 +299,7 @@ class CRM:
                     products = sales_point.get_all_products()
                     
                     if not products:
-                        print("📭 Нет товаров в пункте продаж. Сначала переместите товары со склада (пункт 2)")
+                        print("Нет товаров в пункте продаж. Сначала переместите товары со склада (пункт 2)")
                     else:
                         print("Товары:")
                         for i, p in enumerate(products):
@@ -325,19 +325,19 @@ class CRM:
                                     "status": "completed"
                                 })
                                 self.save_data()
-                                print(f"💰 Баланс компании: {self.company.net_worth:.2f} руб.")
+                                print(f"Баланс компании: {self.company.net_worth:.2f} руб.")
                             else:
-                                print("❌ Ошибка при оформлении продажи")
+                                print("Ошибка при оформлении продажи")
                         else:
-                            print("❌ Неверный номер товара")
+                            print("Неверный номер товара")
                 else:
-                    print("❌ Неверный номер пункта")
+                    print("Неверный номер пункта")
         except ValueError:
-            print("❌ Ошибка: введите число")
+            print("Ошибка: введите число")
         except AttributeError as e:
-            print(f"❌ Ошибка: {e}")
+            print(f"Ошибка: {e}")
         except Exception:
-            print("❌ Ошибка")
+            print("Ошибка")
         
         return result
 
@@ -345,9 +345,9 @@ class CRM:
         """Товары доступные к закупке."""
         
         if not self.catalog:
-            print("❌ Каталог не загружен")
+            print("Каталог не загружен")
         else:
-            print("\n📋 ТОВАРЫ ДОСТУПНЫЕ К ЗАКУПКЕ (пункт 5 для покупки):")
+            print("\nТОВАРЫ ДОСТУПНЫЕ К ЗАКУПКЕ (пункт 5 для покупки):")
             for product in self.catalog[:20]:
                 print(f"  [{product['id']}] {product['название']} - {product['цена']} руб. (объем: {product['объём']})")
 
@@ -360,7 +360,7 @@ class CRM:
             products = self.storages[0].get_all_products()
             
             if not products:
-                print("📭 На складе нет товаров. Купите товары (пункт 5)")
+                print("На складе нет товаров. Купите товары (пункт 5)")
             else:
                 self.info_ops.get_products_info(self.storages[0])
     
@@ -368,9 +368,9 @@ class CRM:
         """Возврат товара."""
         
         if not self.orders:
-            print("❌ Нет заказов")
+            print("Нет заказов")
         else:
-            print("\n📋 ЗАКАЗЫ:")
+            print("\nЗАКАЗЫ:")
             
             recent_orders = self.orders[-5:] if len(self.orders) > 5 else self.orders
             
@@ -388,9 +388,9 @@ class CRM:
                         found_order = o
                 
                 if found_order is None:
-                    print("❌ Заказ не найден")
+                    print("Заказ не найден")
                 elif found_order["status"] != "completed":
-                    print("❌ Товар уже возвращен")
+                    print("Товар уже возвращен")
                 else:
                     confirm = input(f"Вернуть заказ на {found_order['total']} руб.? (да/нет): ")
                     
@@ -400,11 +400,11 @@ class CRM:
 
                         self.save_data()
 
-                        print("✅ Возврат оформлен")
+                        print("Возврат оформлен")
                     else:
-                        print("❌ Возврат отменен")
+                        print("Возврат отменен")
             except:
-                print("❌ Ошибка")
+                print("Ошибка")
     
     def buy_products_ui(self) -> None:
         """Закупка товара."""
@@ -412,7 +412,7 @@ class CRM:
         if self.catalog:
             run_purchase_ui(self.company, self.storages[0]) 
         else:
-            print("❌ Каталог не загружен. Запустите product_generator.py")
+            print("Каталог не загружен. Запустите product_generator.py")
     
     def hire_employee(self) -> None:
         """Найм сотрудника."""
@@ -423,7 +423,7 @@ class CRM:
 
         self.employees.append(employee)
 
-        print(f"✅ Сотрудник нанят (ID: {employee.id})")
+        print(f"Сотрудник нанят (ID: {employee.id})")
     
     def fire_employee(self) -> None:
         """Увольнение сотрудника."""
@@ -451,7 +451,7 @@ class CRM:
 
         self.company.set_header(new_header)
 
-        print(f"✅ Ответственное лицо: {self.company.get_header()}")
+        print(f"Ответственное лицо: {self.company.get_header()}")
     
     def open_storage(self) -> None:
         """Открытие склада."""
@@ -473,7 +473,7 @@ class CRM:
             except:
                 print("Ошибка")
         else:
-            print("❌ Нельзя закрыть единственный склад")
+            print("Нельзя закрыть единственный склад")
     
     def open_sales_point(self) -> None:
         """Открытие пункта продаж."""
@@ -551,7 +551,7 @@ class CRM:
             for product in self.catalog[:20]:
                 print(f"  {product['название']} - {product['цена']} руб.")
         else:
-            print("❌ Каталог не загружен")
+            print("Каталог не загружен")
 
     def company_profit(self) -> None:
         """Доходность предприятия"""
@@ -561,7 +561,7 @@ class CRM:
     def save_and_exit(self) -> None:
         self.save_data()
         
-        print("👋 До свидания!")
+        print("До свидания!")
 
 
 if __name__ == "__main__":
