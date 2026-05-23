@@ -1,3 +1,8 @@
+import sys
+import os
+
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
 from backend.ProductOperations import ProductOperations, load_catalog
 from backend.StaffOperations import StaffOperations
 from backend.StorageOperations import StorageOperations
@@ -9,12 +14,6 @@ from backend.classes.Employee import Employee
 from backend.classes.SalesPoint import SalesPoint
 from frontend.buy_catalog import run_purchase_ui
 from backend.DataStorage import DataStorage
-
-import sys
-import os
-
-
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 
 class CRM:
@@ -52,6 +51,8 @@ class CRM:
         
         for sp_data in sales_points_data:
             sp = SalesPoint(sp_data["id"], sp_data["address"])
+
+            sp._SalesPoint__revenue = sp_data.get("revenue", 0)
             self.sales_points.append(sp)
         
         print(f"✅ Загружено. Баланс: {self.company.net_worth:.2f} руб.")
