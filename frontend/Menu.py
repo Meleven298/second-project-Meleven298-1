@@ -283,27 +283,25 @@ class CRM:
         """Продажа товара."""
         
         result = None
-
-        if not self.sales_points:
-            print("❌ Нет пунктов продаж")
-        else:
-            print("Пункты продаж:")
-
-            for i, sp in enumerate(self.sales_points):
-                print(f"  {i+1}. {sp.get_id()}")
-            
-            try:
+        
+        try:
+            if not self.sales_points:
+                print("❌ Нет пунктов продаж")
+            else:
+                print("Пункты продаж:")
+                for i, sp in enumerate(self.sales_points):
+                    print(f"  {i+1}. {sp.get_id()}")
+                
                 sp_idx = int(input("Выберите пункт: ")) - 1
                 
                 if sp_idx < len(self.sales_points):
                     sales_point = self.sales_points[sp_idx]
                     products = sales_point.get_all_products()
-
+                    
                     if not products:
                         print("📭 Нет товаров в пункте продаж. Сначала переместите товары со склада (пункт 2)")
                     else:
                         print("Товары:")
-
                         for i, p in enumerate(products):
                             print(f"  {i+1}. {p}")
                         
@@ -311,15 +309,14 @@ class CRM:
                         
                         if prod_idx < len(products):
                             product = products[prod_idx]
-
                             name = input("Имя покупателя: ")
                             phone = input("Телефон: ")
-
+                            
                             customer = Customer(name, phone)
                             self.customers.append(customer)
-
+                            
                             order = self.sales_ops.sell_product(sales_point, product, customer, self.company)
-
+                            
                             if order:
                                 self.orders.append({
                                     "id": order.get_id(),
@@ -329,12 +326,18 @@ class CRM:
                                 })
                                 self.save_data()
                                 print(f"💰 Баланс компании: {self.company.net_worth:.2f} руб.")
+                            else:
+                                print("❌ Ошибка при оформлении продажи")
                         else:
                             print("❌ Неверный номер товара")
                 else:
                     print("❌ Неверный номер пункта")
-            except:
-                print("❌ Ошибка")
+        except ValueError:
+            print("❌ Ошибка: введите число")
+        except AttributeError as e:
+            print(f"❌ Ошибка: {e}")
+        except Exception:
+            print("❌ Ошибка")
         
         return result
 
