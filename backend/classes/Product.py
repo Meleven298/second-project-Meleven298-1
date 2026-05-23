@@ -79,5 +79,3 @@ class Product:
 
         return f"{self.__name} (ID:{self.__id}) - {self.__cost} руб."
     
-    
-    
