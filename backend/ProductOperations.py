@@ -144,7 +144,7 @@ def buy_products(storage: Storage, company: Company, cart_items: list[tuple[dict
 
     if not cart_items:
         message = "Корзина пуста"
-        
+
         return success, total_cost, message
 
     for product_data, quantity in cart_items:
@@ -182,5 +182,10 @@ def buy_products(storage: Storage, company: Company, cart_items: list[tuple[dict
     
     if failed_products > 0:
         message += f", {failed_products} утилизировано (не было места)"
+
+    products = storage.get_all_products()
+    
+    for product in products:
+        print(product)
     
     return success, total_cost, message
