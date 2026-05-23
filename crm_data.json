@@ -2,14 +2,14 @@
   "net_worth": 655274,
   "sales_points": [
     {
-      "id": "SP_SP_SP_SP_SP_SP_SP_SP_SP_1",
+      "id": "SP_SP_SP_SP_SP_SP_SP_SP_SP_SP_SP_1",
       "address": "уам",
       "revenue": 0
     },
     {
-      "id": "SP_SP_SP_SP_SP_2",
+      "id": "SP_SP_SP_SP_SP_SP_SP_2",
       "address": "fij",
-      "revenue": 20027
+      "revenue": 103580
     }
   ],
   "orders": []
